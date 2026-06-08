@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Birthday 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #fce4ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+  }
+  .card {
+    width: 100vw;
+    height: 100vh;
+    max-width: 430px;
+    max-height: 932px;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide {
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    transition: opacity 0.85s ease, transform 0.85s ease;
+  }
+  .slide.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.04);
+  }
+
+  /* ===== SLIDE 1 ===== */
+  #s1 { background: linear-gradient(160deg,#fff0f8 0%,#fce4ec 45%,#f8bbd0 100%); }
+  .s1-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 9vw 6vw 0;
+    text-align: center;
+    z-index: 3;
+  }
+  .top-label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: clamp(10px,2.8vw,13px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #e91e8c;
+    margin-bottom: 8px;
+  }
+  .title-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px,11vw,52px);
+    font-weight: 700;
+    color: #c2185b;
+    line-height: 1.1;
+  }
+  .title-big em { font-style: italic; color: #e91e8c; }
+  .age-pill {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.72);
+    border: 1.5px solid rgba(236,100,150,0.3);
+    border-radius: 50px;
+    padding: 6px 24px;
+    color: #c2185b;
+    font-size: clamp(10px,2.8vw,12px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .scene {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 58%;
+  }
+  .scene svg { width: 100%; height: 100%; }
+  .conf {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .ck {
+    position: absolute;
+    border-radius: 2px;
+    animation: fall linear infinite;
+    opacity: 0;
+  }
+  @keyframes fall {
+    0%   { opacity:0; transform:translateY(-20px) rotate(0deg); }
+    10%  { opacity:1; }
+    80%  { opacity:.7; }
+    100% { opacity:0; transform:translateY(110vh) rotate(360deg); }
+  }
+
+  /* ===== SLIDE 2 — full scroll ===== */
+  #s2 {
+    background: #fff0f5;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;   /* slide 2 bisa di-scroll jika konten panjang */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .s2-head {
+    background: linear-gradient(135deg,#f48fb1,#f06292);
+    padding: 38px 24px 26px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .s2-head::before {
+    content: '♡';
+    position: absolute;
+    font-size: 100px;
+    color: rgba(255,255,255,0.07);
+    top: -10px; right: -4px;
+    line-height: 1;
+  }
+  .for-lbl {
+    color: rgba(255,255,255,0.65);
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .s2-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px,6vw,28px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .s2-title em { font-style: italic; color: #fff0f5; }
+
+  /* pesan — padding cukup, font nyaman dibaca */
+  .msg-body {
+    flex-shrink: 0;
+    padding: 28px 26px 20px;
+  }
+
+  .msg-text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #6d3b4f;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  .msg-text p { margin-bottom: 14px; }
+  .msg-text p:last-child { margin-bottom: 0; }
+
+  .divider {
+    border: none;
+    border-top: 1.5px solid #f8bbd0;
+    margin: 22px 0 16px;
+  }
+
+  .love-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #e91e8c;
+    text-align: center;
+    line-height: 1.65;
+  }
+
+  .sender {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #c2185b;
+    text-align: right;
+    margin-top: 10px;
+    opacity: 0.85;
+    padding-bottom: 4px;
+  }
+
+  .s2-foot {
+    background: linear-gradient(135deg,#f8bbd0,#fce4ec);
+    padding: 14px 28px 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .hearts {
+    font-size: 17px;
+    letter-spacing: 8px;
+    color: #e91e8c;
+    margin-bottom: 5px;
+  }
+  .date {
+    color: rgba(180,80,120,0.5);
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ===== NAVIGASI ===== */
+  .dots {
+    position: fixed;
+    bottom: 14px;
+    left: 50%; transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(220,80,130,0.35);
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .dot.on {
+    background: #e91e8c;
+    width: 22px;
+    border-radius: 4px;
+  }
+  .arr {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(236,100,150,0.22);
+    border-radius: 50%;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    color: #c2185b;
+    font-size: 22px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background .2s;
+  }
+  .arr:active { background: rgba(255,255,255,0.92); }
+  .arr.L { left: 10px; }
+  .arr.R { right: 10px; }
+  .arr.hide { opacity:0; pointer-events:none; }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+
+  <!-- SLIDE 1 -->
+  <div class="slide" id="s1">
+    <div class="s1-top">
+      <div class="top-label">✦ special day ✦</div>
+      <div class="title-big">Happy<br><em>Birthday!</em></div>
+      <div class="age-pill">23 years old</div>
+    </div>
+    <div class="scene">
+      <svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#f48fb1" stroke-width="1.5" stroke-linecap="round">
+          <line x1="40" y1="40" x2="40" y2="52"/><line x1="34" y1="46" x2="46" y2="46"/>
+          <line x1="36" y1="42" x2="44" y2="50"/><line x1="44" y1="42" x2="36" y2="50"/>
+        </g>
+        <g fill="none" stroke="#f06292" stroke-width="1.5" stroke-linecap="round">
+          <line x1="315" y1="20" x2="315" y2="32"/><line x1="309" y1="26" x2="321" y2="26"/>
+          <line x1="311" y1="22" x2="319" y2="30"/><line x1="319" y1="22" x2="311" y2="30"/>
+        </g>
+        <circle cx="80" cy="28" r="3" fill="#f8bbd0"/>
+        <circle cx="275" cy="42" r="2.5" fill="#f48fb1"/>
+        <circle cx="330" cy="65" r="2" fill="#fce4ec" stroke="#f06292" stroke-width="1"/>
+        <circle cx="28" cy="90" r="2" fill="#f48fb1"/>
+        <rect x="22" y="238" width="92" height="72" rx="6" fill="#f48fb1"/>
+        <rect x="22" y="238" width="92" height="17" rx="4" fill="#e91e8c"/>
+        <rect x="62" y="238" width="12" height="72" rx="2" fill="#e91e8c" opacity=".55"/>
+        <ellipse cx="56" cy="238" rx="15" ry="9" fill="#e91e8c" transform="rotate(-30 56 238)"/>
+        <ellipse cx="74" cy="238" rx="15" ry="9" fill="#e91e8c" transform="rotate(30 74 238)"/>
+        <circle cx="68" cy="236" r="5" fill="#c2185b"/>
+        <circle cx="46" cy="276" r="4" fill="rgba(255,255,255,0.38)"/>
+        <circle cx="68" cy="292" r="3" fill="rgba(255,255,255,0.32)"/>
+        <circle cx="90" cy="275" r="3.5" fill="rgba(255,255,255,0.28)"/>
+        <rect x="240" y="255" width="78" height="58" rx="6" fill="#fce4ec" stroke="#f48fb1" stroke-width="1.5"/>
+        <rect x="240" y="255" width="78" height="15" rx="4" fill="#f48fb1"/>
+        <rect x="271" y="255" width="12" height="58" rx="2" fill="#f48fb1" opacity=".45"/>
+        <ellipse cx="265" cy="255" rx="13" ry="8" fill="#f48fb1" transform="rotate(-30 265 255)"/>
+        <ellipse cx="279" cy="255" rx="13" ry="8" fill="#f48fb1" transform="rotate(30 279 255)"/>
+        <circle cx="277" cy="254" r="4.5" fill="#e91e8c"/>
+        <rect x="295" y="285" width="52" height="28" rx="5" fill="#f8bbd0" stroke="#f48fb1" stroke-width="1.2"/>
+        <rect x="318" y="285" width="8" height="28" rx="2" fill="#f48fb1" opacity=".45"/>
+        <ellipse cx="180" cy="328" rx="90" ry="9" fill="rgba(244,143,177,0.25)"/>
+        <rect x="108" y="265" width="144" height="62" rx="10" fill="#fff0f5" stroke="#f48fb1" stroke-width="1.5"/>
+        <path d="M108 276 Q123 268 138 276 Q153 284 168 276 Q183 268 198 276 Q213 284 228 276 Q243 268 252 276" fill="none" stroke="#f48fb1" stroke-width="1.2"/>
+        <circle cx="132" cy="296" r="4" fill="#f48fb1"/>
+        <circle cx="154" cy="291" r="3" fill="#f9c2d8"/>
+        <circle cx="176" cy="299" r="4" fill="#f48fb1"/>
+        <circle cx="198" cy="291" r="3" fill="#f9c2d8"/>
+        <circle cx="220" cy="296" r="4" fill="#f48fb1"/>
+        <circle cx="238" cy="292" r="3" fill="#f9c2d8"/>
+        <rect x="132" y="204" width="96" height="64" rx="10" fill="#fce4ec" stroke="#f48fb1" stroke-width="1.5"/>
+        <path d="M132 217 Q143 209 154 217 Q165 225 176 217 Q187 209 198 217 Q209 225 220 217 Q226 209 228 217" fill="none" stroke="#f48fb1" stroke-width="1.2"/>
+        <circle cx="154" cy="238" r="5" fill="#f48fb1"/><circle cx="180" cy="235" r="5" fill="#f48fb1"/><circle cx="206" cy="238" r="5" fill="#f48fb1"/>
+        <circle cx="154" cy="238" r="2.5" fill="#fff"/><circle cx="180" cy="235" r="2.5" fill="#fff"/><circle cx="206" cy="238" r="2.5" fill="#fff"/>
+        <path d="M143 205 Q146 194 149 205" fill="#fff" stroke="#f48fb1" stroke-width="1"/>
+        <path d="M157 205 Q160 194 163 205" fill="#fff" stroke="#f48fb1" stroke-width="1"/>
+        <path d="M171 205 Q174 194 177 205" fill="#fff" stroke="#f48fb1" stroke-width="1"/>
+        <path d="M185 205 Q188 194 191 205" fill="#fff" stroke="#f48fb1" stroke-width="1"/>
+        <path d="M199 205 Q202 194 205 205" fill="#fff" stroke="#f48fb1" stroke-width="1"/>
+        <path d="M213 205 Q216 194 219 205" fill="#fff" stroke="#f48fb1" stroke-width="1"/>
+        <rect x="150" y="174" width="8" height="30" rx="3" fill="#f9c2d8" stroke="#f48fb1" stroke-width="1"/>
+        <ellipse cx="154" cy="170" rx="4" ry="6" fill="#FFCC44"/><ellipse cx="154" cy="172" rx="2.5" ry="4" fill="#FF8844"/>
+        <rect x="167" y="169" width="8" height="35" rx="3" fill="#c2185b" stroke="#e91e8c" stroke-width="1"/>
+        <ellipse cx="171" cy="165" rx="4" ry="6" fill="#FFCC44"/><ellipse cx="171" cy="167" rx="2.5" ry="4" fill="#FF8844"/>
+        <rect x="184" y="172" width="8" height="32" rx="3" fill="#f9c2d8" stroke="#f48fb1" stroke-width="1"/>
+        <ellipse cx="188" cy="168" rx="4" ry="6" fill="#FFCC44"/><ellipse cx="188" cy="170" rx="2.5" ry="4" fill="#FF8844"/>
+        <rect x="201" y="174" width="8" height="30" rx="3" fill="#c2185b" stroke="#e91e8c" stroke-width="1"/>
+        <ellipse cx="205" cy="170" rx="4" ry="6" fill="#FFCC44"/><ellipse cx="205" cy="172" rx="2.5" ry="4" fill="#FF8844"/>
+        <text x="55" y="185" font-size="18" fill="#f48fb1" opacity=".65">♡</text>
+        <text x="290" y="205" font-size="14" fill="#f48fb1" opacity=".55">♡</text>
+        <text x="98" y="148" font-size="12" fill="#f9c2d8" opacity=".75">♡</text>
+        <text x="252" y="158" font-size="16" fill="#f48fb1" opacity=".5">♡</text>
+        <text x="180" y="358" text-anchor="middle" font-family="'Playfair Display',serif" font-style="italic" font-size="14" fill="#e91e8c" opacity=".75">make a wish...</text>
+      </svg>
+    </div>
+    <div class="conf" id="conf"></div>
+  </div>
+
+  <!-- SLIDE 2 — scrollable agar tidak terpotong -->
+  <div class="slide hidden" id="s2">
+    <div class="s2-head">
+      <div class="for-lbl">a message for you</div>
+      <div class="s2-title">Hai <em>My Love,</em><br>Happy Birthday! 🎂</div>
+    </div>
+
+    <div class="msg-body">
+      <div class="msg-text">
+        <p>Kamu adalah alasan terbaikku untuk selalu happy setiap hari.</p>
+        <p>Semoga di usia ke-23 tahun ini, hidup kamu makin dipenuhi hal-hal baik, kebahagiaan, dan kasih sayang.</p>
+        <p>Semoga setiap langkah kamu selalu diberkahi, mimpi-mimpi kamu cepat tercapai, dan kamu selalu kuat menghadapin apapun.</p>
+        <p>Serta apapun yang terjadi, aku selalu ada buat support kamu kapanpun, dalam kondisi apapun, tanpa terkecuali dan aku selalu bangga sama kamu.</p>
+      </div>
+      <hr class="divider">
+      <div class="love-line">"I love you more than words can say" ♡</div>
+      <div class="sender">— Abdurahman Hariri —</div>
+    </div>
+
+    <div class="s2-foot">
+      <div class="hearts">♡ &nbsp; ♡ &nbsp; ♡</div>
+      <div class="date">18 · 06 · 2026</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Nav di luar .card agar tidak ikut scroll -->
+<div class="dots">
+  <div class="dot on" onclick="go(0)"></div>
+  <div class="dot" onclick="go(1)"></div>
+</div>
+<div class="arr L hide" id="bL" onclick="go(cur-1)">‹</div>
+<div class="arr R" id="bR" onclick="go(cur+1)">›</div>
+
+<script>
+  let cur = 0;
+  const slides = ['s1','s2'];
+  const dots = document.querySelectorAll('.dot');
+  const bL = document.getElementById('bL');
+  const bR = document.getElementById('bR');
+
+  function go(n) {
+    if (n < 0 || n >= slides.length) return;
+    document.getElementById(slides[cur]).classList.add('hidden');
+    cur = n;
+    const el = document.getElementById(slides[cur]);
+    el.classList.remove('hidden');
+    el.scrollTop = 0; // reset scroll saat pindah slide
+    dots.forEach((d,i) => d.classList.toggle('on', i === cur));
+    bL.classList.toggle('hide', cur === 0);
+    bR.classList.toggle('hide', cur === slides.length - 1);
+  }
+
+  // Confetti
+  const colors = ['#f48fb1','#f06292','#ffb3c6','#e91e8c','#fce4ec','#fff0f5','#c2185b','#ffd6e7'];
+  const cc = document.getElementById('conf');
+  function spawnConf() {
+    const el = document.createElement('div');
+    el.className = 'ck';
+    const s = 5 + Math.random() * 8;
+    el.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${2.5+Math.random()*2.5}s;animation-delay:${Math.random()*1.5}s;transform:rotate(${Math.random()*360}deg)`;
+    cc.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+  setInterval(spawnConf, 280);
+
+  // Swipe
+  let sx = 0, sy = 0;
+  document.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    const dy = Math.abs(e.changedTouches[0].clientY - sy);
+    // hanya swipe horizontal (bukan scroll vertikal)
+    if (Math.abs(dx) > 50 && dy < 60) go(dx < 0 ? cur+1 : cur-1);
+  }, {passive:true});
+</script>
+</body>
+</html>
